@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofiane Academie - Centre de Formation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-arabic: 'Segoe UI', Tahoma, Arial, sans-serif;
+        }
+
+        .theme-dark {
+            --primary-color: #2980b9;
+            --secondary-color: #34495e;
+            --accent-color: #c0392b;
+            --light-color: #2c3e50;
+            --dark-color: #ecf0f1;
+            --text-color: #ecf0f1;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-green {
+            --primary-color: #27ae60;
+            --secondary-color: #16a085;
+            --accent-color: #e67e22;
+            --light-color: #d5f5e3;
+            --dark-color: #145a32;
+            --text-color: #333;
+            --bg-color: #f0f9f0;
+            --card-bg: #ffffff;
+        }
+
+        .theme-purple {
+            --primary-color: #8e44ad;
+            --secondary-color: #9b59b6;
+            --accent-color: #e74c3c;
+            --light-color: #f4ecf7;
+            --dark-color: #4a235a;
+            --text-color: #333;
+            --bg-color: #faf5fc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
+        }
+
+        body.rtl {
+            direction: rtl;
+            font-family: var(--font-arabic);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        body.rtl .logo i {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            list-style: none;
+        }
+
+        body.rtl .nav-links li {
+            margin-left: 0;
+            margin-right: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        body.rtl .theme-selector {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background-color: var(--light-color);
+        }
+
+        .theme-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .theme-btn i {
+            margin-right: 8px;
+        }
+
+        body.rtl .theme-btn i {
+            margin-right: 0;
+            margin-left: 8px;
+        }
+
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            padding: 10px 0;
+            min-width: 150px;
+            display: none;
+            z-index: 1001;
+        }
+
+        body.rtl .theme-dropdown {
+            right: auto;
+            left: 0;
+        }
+
+        .theme-dropdown.active {
+            display: block;
+        }
+
+        .theme-option {
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .theme-option:hover {
+            background-color: var(--light-color);
+        }
+
+        .theme-option i {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        body.rtl .theme-option i {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        body.rtl .language-selector {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background-color: var(--light-color);
+        }
+
+        .language-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .language-btn i {
+            margin-right: 8px;
+        }
+
+        body.rtl .language-btn i {
+            margin-right: 0;
+            margin-left: 8px;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            padding: 10px 0;
+            min-width: 150px;
+            display: none;
+            z-index: 1001;
+        }
+
+        body.rtl .language-dropdown {
+            right: auto;
+            left: 0;
+        }
+
+        .language-dropdown.active {
+            display: block;
+        }
+
+        .language-option {
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .language-option:hover {
+            background-color: var(--light-color);
+        }
+
+        .language-option i {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        body.rtl .language-option i {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .about {
+            background-color: var(--card-bg);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .formations {
+            background-color: var(--bg-color);
+        }
+
+        .formation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .formation-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .formation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .formation-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .formation-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .formation-card:hover .formation-img img {
+            transform: scale(1.1);
+        }
+
+        .formation-info {
+            padding: 20px;
+        }
+
+        .formation-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .formation-info p {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .formation-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .testimonials {
+            background-color: var(--card-bg);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .testimonial-text::before, .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .testimonial-text::after {
+            bottom: -20px;
+            right: 0;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--secondary-color);
+        }
+
+        .comments-section {
+            background-color: var(--bg-color);
+            padding: 80px 0;
+        }
+
+        .comments-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .comment-form {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .comment-form h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .comments-list {
+            margin-top: 30px;
+        }
+
+        .comment {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .comment:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .comment-date {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .comment-text {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .comment-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .like-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #777;
+            transition: var(--transition);
+        }
+
+        .like-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .like-btn.liked {
+            color: var(--accent-color);
+        }
+
+        .like-btn i {
+            font-size: 1.2rem;
+        }
+
+        .like-count {
+            font-weight: 600;
+        }
+
+        .delete-comment {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #777;
+            transition: var(--transition);
+        }
+
+        .delete-comment:hover {
+            color: var(--accent-color);
+        }
+
+        .contact {
+            background-color: var(--bg-color);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        body.rtl .contact-info i {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin-right: 30px;
+        }
+
+        body.rtl .footer-column {
+            margin-right: 0;
+            margin-left: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-counter {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stats-counter h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .counter-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        body.rtl .close-modal {
+            right: auto;
+            left: 15px;
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .form-steps {
+            display: flex;
+            margin-bottom: 20px;
+            justify-content: space-between;
+        }
+
+        .form-step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            margin: 0 5px;
+            font-weight: 600;
+        }
+
+        .form-step.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .form-step.completed {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* Panel Administrateur */
+        .admin-panel {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            padding: 15px;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .admin-panel.hidden {
+            transform: translateX(100%) translateY(-50%);
+        }
+
+        .admin-toggle {
+            position: absolute;
+            top: 50%;
+            left: -40px;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            cursor: pointer;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-content {
+            width: 300px;
+        }
+
+        .admin-section {
+            margin-bottom: 20px;
+        }
+
+        .admin-section h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .admin-stat {
+            background-color: var(--light-color);
+            padding: 10px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .admin-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .admin-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .admin-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .admin-btn {
+            padding: 8px 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .admin-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .admin-btn i {
+            margin-right: 8px;
+        }
+
+        body.rtl .admin-btn i {
+            margin-right: 0;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-column {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            body.rtl .footer-column {
+                margin-left: 0;
+            }
+
+            .admin-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header et Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Sofiane Academie
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#accueil" data-key="nav.home">Accueil</a></li>
+                    <li><a href="#apropos" data-key="nav.about">À propos</a></li>
+                    <li><a href="#formations" data-key="nav.courses">Formations</a></li>
+                    <li><a href="#temoignages" data-key="nav.testimonials">Témoignages</a></li>
+                    <li><a href="#commentaires" data-key="nav.comments">Commentaires</a></li>
+                    <li><a href="#contact" data-key="nav.contact">Contact</a></li>
+                    <li class="theme-selector">
+                        <button class="theme-btn">
+                            <i class="fas fa-palette"></i>
+                            <span>Thème</span>
+                        </button>
+                        <div class="theme-dropdown">
+                            <div class="theme-option" data-theme="default">
+                                <i class="fas fa-sun"></i>
+                                <span>Classique</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <i class="fas fa-moon"></i>
+                                <span>Sombre</span>
+                            </div>
+                            <div class="theme-option" data-theme="green">
+                                <i class="fas fa-leaf"></i>
+                                <span>Vert</span>
+                            </div>
+                            <div class="theme-option" data-theme="purple">
+                                <i class="fas fa-gem"></i>
+                                <span>Violet</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="language-selector">
+                        <button class="language-btn">
+                            <i class="fas fa-globe"></i>
+                            <span>FR</span>
+                        </button>
+                        <div class="language-dropdown">
+                            <div class="language-option" data-lang="fr">
+                                <i class="fas fa-flag"></i>
+                                <span>Français</span>
+                            </div>
+                            <div class="language-option" data-lang="en">
+                                <i class="fas fa-flag-usa"></i>
+                                <span>English</span>
+                            </div>
+                            <div class="language-option" data-lang="ar">
+                                <i class="fas fa-flag"></i>
+                                <span>العربية</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="btn btn-accent" id="registerBtn">
+                            <i class="fas fa-user-plus"></i>
+                            <span data-key="nav.register">S'inscrire</span>
+                        </button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Panel Administrateur -->
+    <div class="admin-panel hidden">
+        <div class="admin-toggle">
+            <i class="fas fa-cog"></i>
+        </div>
+        <div class="admin-content">
+            <h2>Panel Administrateur</h2>
+            
+            <div class="admin-section">
+                <h3>Statistiques du site</h3>
+                <div class="admin-stats">
+                    <div class="admin-stat">
+                        <div class="admin-stat-value" id="visitCount">0</div>
+                        <div class="admin-stat-label">Visites</div>
+                    </div>
+                    <div class="admin-stat">
+                        <div class="admin-stat-value" id="commentCount">0</div>
+                        <div class="admin-stat-label">Commentaires</div>
+                    </div>
+                    <div class="admin-stat">
+                        <div class="admin-stat-value" id="likeCount">0</div>
+                        <div class="admin-stat-label">Likes</div>
+                    </div>
+                    <div class="admin-stat">
+                        <div class="admin-stat-value" id="userCount">0</div>
+                        <div class="admin-stat-label">Inscriptions</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-section">
+                <h3>Actions</h3>
+                <div class="admin-actions">
+                    <button class="admin-btn" id="resetStats">
+                        <i class="fas fa-redo"></i>
+                        <span>Réinitialiser les stats</span>
+                    </button>
+                    <button class="admin-btn" id="manageComments">
+                        <i class="fas fa-comments"></i>
+                        <span>Gérer les commentaires</span>
+                    </button>
+                    <button class="admin-btn" id="exportData">
+                        <i class="fas fa-download"></i>
+                        <span>Exporter les données</span>
+                    </button>
+                    <button class="admin-btn" id="viewUsers">
+                        <i class="fas fa-users"></i>
+                        <span>Voir les utilisateurs</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Hero -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="stats-counter">
+                <h3 data-key="stats.visits">Visites sur notre site</h3>
+                <div class="counter-value" id="visitCounter">0</div>
+            </div>
+            <h1 data-key="hero.title">Formez-vous aux métiers d'avenir</h1>
+            <p data-key="hero.subtitle">Le Sofiane Intelligence Center vous propose des formations de qualité en langues étrangères, développement web, électronique embarquée et bien plus encore.</p>
+            <a href="#formations" class="btn" data-key="hero.cta">Découvrir nos formations</a>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="about" id="apropos">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-key="about.title">À propos de nous</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-key="about.subtitle">Sofiane Intelligence Center</h3>
+                    <p data-key="about.text1">Le Sofiane Intelligence Center est un centre de formation d'excellence dédié à l'éducation des jeunes dans les domaines technologiques et linguistiques. Notre mission est de préparer la nouvelle génération aux défis du monde professionnel moderne.</p>
+                    <p data-key="about.text2">Nous proposons des formations pratiques et adaptées aux besoins du marché, dispensées par des experts passionnés par leur domaine. Notre approche pédagogique combine théorie et pratique pour garantir l'acquisition de compétences solides et directement applicables.</p>
+                    <a href="#contact" class="btn" data-key="about.cta">Nous contacter</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1524178239883-6a6d47cef6c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sofiane Intelligence Center">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formations -->
+    <section class="formations" id="formations">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-key="courses.title">Nos Formations</h2>
+            </div>
+            <div class="formation-cards">
+                <div class="formation-card">
+                    <div class="formation-img">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Langues étrangères">
+                    </div>
+                    <div class="formation-info">
+                        <h3 data-key="courses.lang.title">Langues Étrangères</h3>
+                        <p data-key="courses.lang.desc">Apprenez l'anglais, l'espagnol, l'allemand et bien d'autres langues avec nos méthodes innovantes et interactives.</p>
+                        <div class="formation-price" data-key="courses.lang.price">499€</div>
+                        <button class="btn btn-accent enroll-btn" data-course="langues" data-key="courses.enroll">S'inscrire</button>
+                    </div>
+                </div>
+                <div class="formation-card">
+                    <div class="formation-img">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement Web">
+                    </div>
+                    <div class="formation-info">
+                        <h3 data-key="courses.web.title">Développement Web</h3>
+                        <p data-key="courses.web.desc">Maîtrisez les technologies web modernes : HTML, CSS, JavaScript, React, Node.js et bien plus encore.</p>
+                        <div class="formation-price" data-key="courses.web.price">799€</div>
+                        <button class="btn btn-accent enroll-btn" data-course="web" data-key="courses.enroll">S'inscrire</button>
+                    </div>
+                </div>
+                <div class="formation-card">
+                    <div class="formation-img">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Électronique Embarquée">
+                    </div>
+                    <div class="formation-info">
+                        <h3 data-key="courses.embedded.title">Électronique Embarquée</h3>
+                        <p data-key="courses.embedded.desc">Découvrez le monde de l'électronique embarquée, de la programmation de microcontrôleurs à la robotique.</p>
+                        <div class="formation-price" data-key="courses.embedded.price">899€</div>
+                        <button class="btn btn-accent enroll-btn" data-course="electronique" data-key="courses.enroll">S'inscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="testimonials" id="temoignages">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-key="testimonials.title">Témoignages</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <p class="testimonial-text" data-key="testimonials.1.text">"La formation en développement web m'a permis d'acquérir les compétences nécessaires pour décrocher mon premier emploi dans le domaine. Les formateurs sont passionnés et très pédagogues."</p>
+                    <p class="testimonial-author" data-key="testimonials.1.author">- Karim, Développeur Web</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text" data-key="testimonials.2.text">"Grâce aux cours d'anglais du Sofiane Intelligence Center, j'ai pu améliorer considérablement mon niveau et obtenir une promotion dans mon entreprise. Je recommande vivement !"</p>
+                    <p class="testimonial-author" data-key="testimonials.2.author">- Amina, Chef de Projet</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text" data-key="testimonials.3.text">"La formation en électronique embarquée était exactement ce que je cherchais. J'ai pu réaliser mon projet de domotique grâce aux connaissances acquises pendant le cursus."</p>
+                    <p class="testimonial-author" data-key="testimonials.3.author">- Youssef, Ingénieur Électronique</p>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <span class="slider-dot active" data-slide="0"></span>
+                <span class="slider-dot" data-slide="1"></span>
+                <span class="slider-dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Commentaires -->
+    <section class="comments-section" id="commentaires">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-key="comments.title">Espace Commentaires</h2>
+            </div>
+            <div class="comments-container">
+                <div class="comment-form">
+                    <h3 data-key="comments.add">Ajouter un commentaire</h3>
+                    <form id="commentForm">
+                        <div class="form-group">
+                            <label for="commentName" data-key="comments.form.name">Votre nom</label>
+                            <input type="text" id="commentName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="commentText" data-key="comments.form.comment">Votre commentaire</label>
+                            <textarea id="commentText" name="comment" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" data-key="comments.form.submit">Publier le commentaire</button>
+                    </form>
+                </div>
+                
+                <div class="comments-list" id="commentsList">
+                    <!-- Les commentaires seront ajoutés ici dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-key="contact.title">Contactez-nous</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 data-key="contact.info">Informations de contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong data-key="contact.address">Adresse :</strong> 123 Rue de la Formation, 75000 Paris, France</p>
+                    <p><i class="fas fa-phone"></i> <strong data-key="contact.phone">Téléphone :</strong> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> <strong data-key="contact.email">Email :</strong> contact@sofianeacademie.com</p>
+                    <p><i class="fas fa-clock"></i> <strong data-key="contact.hours">Horaires :</strong> Lun - Ven : 9h00 - 18h00</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" data-key="contact.form.name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-key="contact.form.email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" data-key="contact.form.subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-key="contact.form.message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" data-key="contact.form.submit">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sofiane Academie</h3>
+                    <p data-key="footer.description">Le centre de formation d'excellence pour les jeunes souhaitant acquérir des compétences dans les domaines technologiques et linguistiques.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 data-key="footer.links">Liens rapides</h3>
+                    <ul>
+                        <li><a href="#accueil" data-key="nav.home">Accueil</a></li>
+                        <li><a href="#apropos" data-key="nav.about">À propos</a></li>
+                        <li><a href="#formations" data-key="nav.courses">Formations</a></li>
+                        <li><a href="#temoignages" data-key="nav.testimonials">Témoignages</a></li>
+                        <li><a href="#commentaires" data-key="nav.comments">Commentaires</a></li>
+                        <li><a href="#contact" data-key="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-key="footer.courses">Formations</h3>
+                    <ul>
+                        <li><a href="#" data-key="courses.lang.title">Langues étrangères</a></li>
+                        <li><a href="#" data-key="courses.web.title">Développement web</a></li>
+                        <li><a href="#" data-key="courses.embedded.title">Électronique embarquée</a></li>
+                        <li><a href="#">Soft skills</a></li>
+                        <li><a href="#">Formations sur mesure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Sofiane Academie - <span data-key="footer.rights">Tous droits réservés</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal d'inscription -->
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title" data-key="registration.title">Inscription en ligne</h2>
+            
+            <div class="form-steps">
+                <div class="form-step active" id="step1">1. Informations</div>
+                <div class="form-step" id="step2">2. Formation</div>
+                <div class="form-step" id="step3">3. Paiement</div>
+            </div>
+            
+            <form id="registrationForm">
+                <div class="step-content active" id="step1-content">
+                    <div class="form-group">
+                        <label for="fullName" data-key="registration.form.name">Nom complet</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-key="registration.form.email">Email</label>
+                        <input type="email" id="regEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-key="registration.form.phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" data-key="registration.form.address">Adresse</label>
+                        <textarea id="address" name="address" required></textarea>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn" id="nextStep1" data-key="registration.next">Suivant</button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step2-content">
+                    <div class="form-group">
+                        <label for="course" data-key="registration.form.course">Formation choisie</label>
+                        <select id="course" name="course" required>
+                            <option value="" data-key="registration.form.select">Sélectionnez une formation</option>
+                            <option value="langues" data-key="courses.lang.title">Langues Étrangères - 499€</option>
+                            <option value="web" data-key="courses.web.title">Développement Web - 799€</option>
+                            <option value="electronique" data-key="courses.embedded.title">Électronique Embarquée - 899€</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="schedule" data-key="registration.form.schedule">Horaire préféré</label>
+                        <select id="schedule" name="schedule" required>
+                            <option value="" data-key="registration.form.select">Sélectionnez un horaire</option>
+                            <option value="morning" data-key="registration.form.morning">Matin (9h-12h)</option>
+                            <option value="afternoon" data-key="registration.form.afternoon">Après-midi (14h-17h)</option>
+                            <option value="evening" data-key="registration.form.evening">Soir (18h-21h)</option>
+                        </select>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn" id="prevStep2" data-key="registration.previous">Précédent</button>
+                        <button type="button" class="btn" id="nextStep2" data-key="registration.next">Suivant</button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step3-content">
+                    <div class="form-group">
+                        <label data-key="registration.form.payment">Méthode de paiement</label>
+                        <div class="payment-methods">
+                            <div class="payment-method" data-method="credit">
+                                <i class="fab fa-cc-visa"></i>
+                                <div data-key="registration.form.credit">Carte de crédit</div>
+                            </div>
+                            <div class="payment-method" data-method="paypal">
+                                <i class="fab fa-cc-paypal"></i>
+                                <div>PayPal</div>
+                            </div>
+                            <div class="payment-method" data-method="bank">
+                                <i class="fas fa-university"></i>
+                                <div data-key="registration.form.bank">Virement bancaire</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="creditCardForm" style="display: none;">
+                        <div class="form-group">
+                            <label for="cardNumber" data-key="registration.form.cardNumber">Numéro de carte</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-group" style="display: flex; gap: 10px;">
+                            <div style="flex: 1;">
+                                <label for="expiry" data-key="registration.form.expiry">Date d'expiration</label>
+                                <input type="text" id="expiry" name="expiry" placeholder="MM/AA">
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="cvv" data-key="registration.form.cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn" id="prevStep3" data-key="registration.previous">Précédent</button>
+                        <button type="submit" class="btn btn-accent" data-key="registration.submit">Finaliser l'inscription</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Système de traduction
+        const translations = {
+            fr: {
+                "nav.home": "Accueil",
+                "nav.about": "À propos",
+                "nav.courses": "Formations",
+                "nav.testimonials": "Témoignages",
+                "nav.comments": "Commentaires",
+                "nav.contact": "Contact",
+                "nav.register": "S'inscrire",
+                "stats.visits": "Visites sur notre site",
+                "hero.title": "Formez-vous aux métiers d'avenir",
+                "hero.subtitle": "Le Sofiane Intelligence Center vous propose des formations de qualité en langues étrangères, développement web, électronique embarquée et bien plus encore.",
+                "hero.cta": "Découvrir nos formations",
+                "about.title": "À propos de nous",
+                "about.subtitle": "Sofiane Intelligence Center",
+                "about.text1": "Le Sofiane Intelligence Center est un centre de formation d'excellence dédié à l'éducation des jeunes dans les domaines technologiques et linguistiques. Notre mission est de préparer la nouvelle génération aux défis du monde professionnel moderne.",
+                "about.text2": "Nous proposons des formations pratiques et adaptées aux besoins du marché, dispensées par des experts passionnés par leur domaine. Notre approche pédagogique combine théorie et pratique pour garantir l'acquisition de compétences solides et directement applicables.",
+                "about.cta": "Nous contacter",
+                "courses.title": "Nos Formations",
+                "courses.lang.title": "Langues Étrangères",
+                "courses.lang.desc": "Apprenez l'anglais, l'espagnol, l'allemand et bien d'autres langues avec nos méthodes innovantes et interactives.",
+                "courses.lang.price": "499€",
+                "courses.web.title": "Développement Web",
+                "courses.web.desc": "Maîtrisez les technologies web modernes : HTML, CSS, JavaScript, React, Node.js et bien plus encore.",
+                "courses.web.price": "799€",
+                "courses.embedded.title": "Électronique Embarquée",
+                "courses.embedded.desc": "Découvrez le monde de l'électronique embarquée, de la programmation de microcontrôleurs à la robotique.",
+                "courses.embedded.price": "899€",
+                "courses.enroll": "S'inscrire",
+                "testimonials.title": "Témoignages",
+                "testimonials.1.text": "\"La formation en développement web m'a permis d'acquérir les compétences nécessaires pour décrocher mon premier emploi dans le domaine. Les formateurs sont passionnés et très pédagogues.\"",
+                "testimonials.1.author": "- Karim, Développeur Web",
+                "testimonials.2.text": "\"Grâce aux cours d'anglais du Sofiane Intelligence Center, j'ai pu améliorer considérablement mon niveau et obtenir une promotion dans mon entreprise. Je recommande vivement !\"",
+                "testimonials.2.author": "- Amina, Chef de Projet",
+                "testimonials.3.text": "\"La formation en électronique embarquée était exactement ce que je cherchais. J'ai pu réaliser mon projet de domotique grâce aux connaissances acquises pendant le cursus.\"",
+                "testimonials.3.author": "- Youssef, Ingénieur Électronique",
+                "comments.title": "Espace Commentaires",
+                "comments.add": "Ajouter un commentaire",
+                "comments.form.name": "Votre nom",
+                "comments.form.comment": "Votre commentaire",
+                "comments.form.submit": "Publier le commentaire",
+                "contact.title": "Contactez-nous",
+                "contact.info": "Informations de contact",
+                "contact.address": "Adresse",
+                "contact.phone": "Téléphone",
+                "contact.email": "Email",
+                "contact.hours": "Horaires",
+                "contact.form.name": "Nom complet",
+                "contact.form.email": "Email",
+                "contact.form.subject": "Sujet",
+                "contact.form.message": "Message",
+                "contact.form.submit": "Envoyer le message",
+                "footer.description": "Le centre de formation d'excellence pour les jeunes souhaitant acquérir des compétences dans les domaines technologiques et linguistiques.",
+                "footer.links": "Liens rapides",
+                "footer.courses": "Formations",
+                "footer.rights": "Tous droits réservés",
+                "registration.title": "Inscription en ligne",
+                "registration.form.name": "Nom complet",
+                "registration.form.email": "Email",
+                "registration.form.phone": "Téléphone",
+                "registration.form.address": "Adresse",
+                "registration.form.course": "Formation choisie",
+                "registration.form.select": "Sélectionnez une option",
+                "registration.form.schedule": "Horaire préféré",
+                "registration.form.morning": "Matin (9h-12h)",
+                "registration.form.afternoon": "Après-midi (14h-17h)",
+                "registration.form.evening": "Soir (18h-21h)",
+                "registration.form.payment": "Méthode de paiement",
+                "registration.form.credit": "Carte de crédit",
+                "registration.form.bank": "Virement bancaire",
+                "registration.form.cardNumber": "Numéro de carte",
+                "registration.form.expiry": "Date d'expiration",
+                "registration.form.cvv": "CVV",
+                "registration.previous": "Précédent",
+                "registration.next": "Suivant",
+                "registration.submit": "Finaliser l'inscription"
+            },
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.courses": "Courses",
+                "nav.testimonials": "Testimonials",
+                "nav.comments": "Comments",
+                "nav.contact": "Contact",
+                "nav.register": "Register",
+                "stats.visits": "Visits to our site",
+                "hero.title": "Train for the jobs of the future",
+                "hero.subtitle": "Sofiane Intelligence Center offers quality training in foreign languages, web development, embedded electronics and much more.",
+                "hero.cta": "Discover our courses",
+                "about.title": "About Us",
+                "about.subtitle": "Sofiane Intelligence Center",
+                "about.text1": "Sofiane Intelligence Center is an excellence training center dedicated to youth education in technological and linguistic fields. Our mission is to prepare the new generation for the challenges of the modern professional world.",
+                "about.text2": "We offer practical training adapted to market needs, delivered by experts passionate about their field. Our pedagogical approach combines theory and practice to guarantee the acquisition of solid and directly applicable skills.",
+                "about.cta": "Contact us",
+                "courses.title": "Our Courses",
+                "courses.lang.title": "Foreign Languages",
+                "courses.lang.desc": "Learn English, Spanish, German and many other languages with our innovative and interactive methods.",
+                "courses.lang.price": "499€",
+                "courses.web.title": "Web Development",
+                "courses.web.desc": "Master modern web technologies: HTML, CSS, JavaScript, React, Node.js and much more.",
+                "courses.web.price": "799€",
+                "courses.embedded.title": "Embedded Electronics",
+                "courses.embedded.desc": "Discover the world of embedded electronics, from microcontroller programming to robotics.",
+                "courses.embedded.price": "899€",
+                "courses.enroll": "Enroll",
+                "testimonials.title": "Testimonials",
+                "testimonials.1.text": "\"The web development training allowed me to acquire the necessary skills to land my first job in the field. The trainers are passionate and very pedagogical.\"",
+                "testimonials.1.author": "- Karim, Web Developer",
+                "testimonials.2.text": "\"Thanks to the English courses at Sofiane Intelligence Center, I was able to significantly improve my level and get a promotion in my company. I highly recommend!\"",
+                "testimonials.2.author": "- Amina, Project Manager",
+                "testimonials.3.text": "\"The embedded electronics training was exactly what I was looking for. I was able to complete my home automation project thanks to the knowledge acquired during the course.\"",
+                "testimonials.3.author": "- Youssef, Electronics Engineer",
+                "comments.title": "Comments Section",
+                "comments.add": "Add a comment",
+                "comments.form.name": "Your name",
+                "comments.form.comment": "Your comment",
+                "comments.form.submit": "Publish comment",
+                "contact.title": "Contact Us",
+                "contact.info": "Contact Information",
+                "contact.address": "Address",
+                "contact.phone": "Phone",
+                "contact.email": "Email",
+                "contact.hours": "Opening Hours",
+                "contact.form.name": "Full Name",
+                "contact.form.email": "Email",
+                "contact.form.subject": "Subject",
+                "contact.form.message": "Message",
+                "contact.form.submit": "Send Message",
+                "footer.description": "The excellence training center for young people wishing to acquire skills in technological and linguistic fields.",
+                "footer.links": "Quick Links",
+                "footer.courses": "Courses",
+                "footer.rights": "All rights reserved",
+                "registration.title": "Online Registration",
+                "registration.form.name": "Full Name",
+                "registration.form.email": "Email",
+                "registration.form.phone": "Phone",
+                "registration.form.address": "Address",
+                "registration.form.course": "Selected Course",
+                "registration.form.select": "Select an option",
+                "registration.form.schedule": "Preferred Schedule",
+                "registration.form.morning": "Morning (9am-12pm)",
+                "registration.form.afternoon": "Afternoon (2pm-5pm)",
+                "registration.form.evening": "Evening (6pm-9pm)",
+                "registration.form.payment": "Payment Method",
+                "registration.form.credit": "Credit Card",
+                "registration.form.bank": "Bank Transfer",
+                "registration.form.cardNumber": "Card Number",
+                "registration.form.expiry": "Expiry Date",
+                "registration.form.cvv": "CVV",
+                "registration.previous": "Previous",
+                "registration.next": "Next",
+                "registration.submit": "Complete Registration"
+            },
+            ar: {
+                "nav.home": "الرئيسية",
+                "nav.about": "من نحن",
+                "nav.courses": "الدورات",
+                "nav.testimonials": "شهادات",
+                "nav.comments": "التعليقات",
+                "nav.contact": "اتصل بنا",
+                "nav.register": "سجل الآن",
+                "stats.visits": "زيارات موقعنا",
+                "hero.title": "تدرب على وظائف المستقبل",
+                "hero.subtitle": "يقدم مركز سفيان للذكاء تدريبات عالية الجودة في اللغات الأجنبية، تطوير الويب، الإلكترونيات المدمجة والمزيد.",
+                "hero.cta": "اكتشف دوراتنا",
+                "about.title": "من نحن",
+                "about.subtitle": "مركز سفيان للذكاء",
+                "about.text1": "مركز سفيان للذكاء هو مركز تدريب متميز مخصص لتعليم الشباب في المجالات التكنولوجية واللغوية. مهمتنا هي إعداد الجيل الجديد لتحديات العالم المهني الحديث.",
+                "about.text2": "نقدم تدريبات عملية مكيفة مع احتياجات السوق، يقدمها خبراء شغوفون بمجالهم. نهجنا التربوي يجمع بين النظرية والتطبيق لضمان اكتساب مهارات صلبة وقابلة للتطبيق مباشرة.",
+                "about.cta": "اتصل بنا",
+                "courses.title": "دوراتنا",
+                "courses.lang.title": "اللغات الأجنبية",
+                "courses.lang.desc": "تعلم الإنجليزية، الإسبانية، الألمانية والعديد من اللغات الأخرى بطرقنا المبتكرة والتفاعلية.",
+                "courses.lang.price": "499€",
+                "courses.web.title": "تطوير الويب",
+                "courses.web.desc": "أتقن تقنيات الويب الحديثة: HTML، CSS، JavaScript، React، Node.js والمزيد.",
+                "courses.web.price": "799€",
+                "courses.embedded.title": "الإلكترونيات المدمجة",
+                "courses.embedded.desc": "اكتشف عالم الإلكترونيات المدمجة، من برمجة المتحكمات الدقيقة إلى الروبوتات.",
+                "courses.embedded.price": "899€",
+                "courses.enroll": "سجل الآن",
+                "testimonials.title": "شهادات",
+                "testimonials.1.text": "\"مكنني تدريب تطوير الويب من اكتساب المهارات اللازمة للحصول على أول وظيفة لي في المجال. المدربون شغوفون وتربويون للغاية.\"",
+                "testimonials.1.author": "- كريم، مطور ويب",
+                "testimonials.2.text": "\"بفضل دورات الإنجليزية في مركز سفيان للذكاء، تمكنت من تحسين مستواي بشكل ملحوظ والحصول على ترقية في شركتي. أوصي بشدة!\"",
+                "testimonials.2.author": "- أمينة، مديرة مشروع",
+                "testimonials.3.text": "\"كان تدريب الإلكترونيات المدمجة بالضبط ما كنت أبحث عنه. تمكنت من إنجاز مشروع المنزل الذكي بفضل المعرفة المكتسبة خلال الدورة.\"",
+                "testimonials.3.author": "- يوسف، مهندس إلكتروني",
+                "comments.title": "مساحة التعليقات",
+                "comments.add": "أضف تعليقًا",
+                "comments.form.name": "اسمك",
+                "comments.form.comment": "تعليقك",
+                "comments.form.submit": "نشر التعليق",
+                "contact.title": "اتصل بنا",
+                "contact.info": "معلومات الاتصال",
+                "contact.address": "العنوان",
+                "contact.phone": "الهاتف",
+                "contact.email": "البريد الإلكتروني",
+                "contact.hours": "أوقات العمل",
+                "contact.form.name": "الاسم الكامل",
+                "contact.form.email": "البريد الإلكتروني",
+                "contact.form.subject": "الموضوع",
+                "contact.form.message": "الرسالة",
+                "contact.form.submit": "إرسال الرسالة",
+                "footer.description": "مركز التدريب المتميز للشباب الراغبين في اكتساب مهارات في المجالات التكنولوجية واللغوية.",
+                "footer.links": "روابط سريعة",
+                "footer.courses": "الدورات",
+                "footer.rights": "جميع الحقوق محفوظة",
+                "registration.title": "التسجيل عبر الإنترنت",
+                "registration.form.name": "الاسم الكامل",
+                "registration.form.email": "البريد الإلكتروني",
+                "registration.form.phone": "الهاتف",
+                "registration.form.address": "العنوان",
+                "registration.form.course": "الدورة المختارة",
+                "registration.form.select": "اختر خيارًا",
+                "registration.form.schedule": "الجدول الزمني المفضل",
+                "registration.form.morning": "الصباح (9-12)",
+                "registration.form.afternoon": "بعد الظهر (14-17)",
+                "registration.form.evening": "المساء (18-21)",
+                "registration.form.payment": "طريقة الدفع",
+                "registration.form.credit": "بطاقة ائتمان",
+                "registration.form.bank": "تحويل بنكي",
+                "registration.form.cardNumber": "رقم البطاقة",
+                "registration.form.expiry": "تاريخ الانتهاء",
+                "registration.form.cvv": "CVV",
+                "registration.previous": "السابق",
+                "registration.next": "التالي",
+                "registration.submit": "إكمال التسجيل"
+            }
+        };
+
+        let currentLang = 'fr';
+        let currentTheme = 'default';
+
+        // Fonction pour changer la langue
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Mettre à jour tous les éléments avec data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT') {
+                        if (element.getAttribute('placeholder') !== null) {
+                            element.placeholder = translations[lang][key];
+                        } else if (element.tagName === 'SELECT') {
+                            // Pour les options de sélection, nous gérons séparément
+                            if (element.id === 'course' || element.id === 'schedule') {
+                                // Ces sélecteurs sont gérés dans le code d'inscription
+                            } else {
+                                element.innerHTML = '';
+                                const option = document.createElement('option');
+                                option.value = '';
+                                option.textContent = translations[lang][key];
+                                element.appendChild(option);
+                            }
+                        }
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Changer la direction pour l'arabe
+            if (lang === 'ar') {
+                document.body.classList.add('rtl');
+                document.body.setAttribute('dir', 'rtl');
+            } else {
+                document.body.classList.remove('rtl');
+                document.body.setAttribute('dir', 'ltr');
+            }
+
+            // Mettre à jour le texte du bouton de langue
+            document.querySelector('.language-btn span').textContent = 
+                lang === 'fr' ? 'FR' : lang === 'en' ? 'EN' : 'AR';
+
+            // Fermer le dropdown
+            document.querySelector('.language-dropdown').classList.remove('active');
+        }
+
+        // Fonction pour changer le thème
+        function changeTheme(theme) {
+            currentTheme = theme;
+            document.body.className = '';
+            if (theme !== 'default') {
+                document.body.classList.add(`theme-${theme}`);
+            }
+            
+            // Fermer le dropdown
+            document.querySelector('.theme-dropdown').classList.remove('active');
+        }
+
+        // Gestionnaire d'événements pour le sélecteur de langue
+        document.querySelector('.language-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelector('.language-dropdown').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Gestionnaire d'événements pour le sélecteur de thème
+        document.querySelector('.theme-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelector('.theme-dropdown').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                changeTheme(theme);
+            });
+        });
+
+        // Fermer les dropdowns en cliquant ailleurs
+        document.addEventListener('click', function() {
+            document.querySelector('.language-dropdown').classList.remove('active');
+            document.querySelector('.theme-dropdown').classList.remove('active');
+        });
+
+        // Menu mobile
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Slider des témoignages
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert(currentLang === 'fr' ? 'Merci ! Votre message a été envoyé.' :
+                  currentLang === 'en' ? 'Thank you! Your message has been sent.' :
+                  'شكرًا! تم إرسال رسالتك.');
+            e.target.reset();
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Système d'inscription
+        const registrationModal = document.getElementById('registrationModal');
+        const registerBtn = document.getElementById('registerBtn');
+        const closeModal = document.querySelector('.close-modal');
+        const enrollBtns = document.querySelectorAll('.enroll-btn');
+        const formSteps = document.querySelectorAll('.form-step');
+        const stepContents = document.querySelectorAll('.step-content');
+        const nextStep1 = document.getElementById('nextStep1');
+        const nextStep2 = document.getElementById('nextStep2');
+        const prevStep2 = document.getElementById('prevStep2');
+        const prevStep3 = document.getElementById('prevStep3');
+        const registrationForm = document.getElementById('registrationForm');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const creditCardForm = document.getElementById('creditCardForm');
+        const courseSelect = document.getElementById('course');
+
+        // Ouvrir le modal d'inscription
+        registerBtn.addEventListener('click', () => {
+            registrationModal.classList.add('active');
+        });
+
+        enrollBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                registrationModal.classList.add('active');
+                const course = btn.getAttribute('data-course');
+                courseSelect.value = course;
+            });
+        });
+
+        // Fermer le modal
+        closeModal.addEventListener('click', () => {
+            registrationModal.classList.remove('active');
+            resetRegistrationForm();
+        });
+
+        // Fermer le modal en cliquant à l'extérieur
+        window.addEventListener('click', (e) => {
+            if (e.target === registrationModal) {
+                registrationModal.classList.remove('active');
+                resetRegistrationForm();
+            }
+        });
+
+        // Navigation dans le formulaire d'inscription
+        nextStep1.addEventListener('click', () => {
+            goToStep(2);
+        });
+
+        nextStep2.addEventListener('click', () => {
+            goToStep(3);
+        });
+
+        prevStep2.addEventListener('click', () => {
+            goToStep(1);
+        });
+
+        prevStep3.addEventListener('click', () => {
+            goToStep(2);
+        });
+
+        function goToStep(step) {
+            formSteps.forEach((formStep, index) => {
+                if (index < step - 1) {
+                    formStep.classList.remove('active');
+                    formStep.classList.add('completed');
+                } else if (index === step - 1) {
+                    formStep.classList.add('active');
+                    formStep.classList.remove('completed');
+                } else {
+                    formStep.classList.remove('active');
+                    formStep.classList.remove('completed');
+                }
+            });
+
+            stepContents.forEach((content, index) => {
+                if (index === step - 1) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+
+        // Gestion des méthodes de paiement
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                
+                if (method.getAttribute('data-method') === 'credit') {
+                    creditCardForm.style.display = 'block';
+                } else {
+                    creditCardForm.style.display = 'none';
+                }
+            });
+        });
+
+        // Soumission du formulaire d'inscription
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Récupérer les données du formulaire
+            const formData = new FormData(registrationForm);
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: formData.get('address'),
+                course: formData.get('course'),
+                schedule: formData.get('schedule'),
+                paymentMethod: document.querySelector('.payment-method.selected')?.getAttribute('data-method')
+            };
+            
+            // Simulation de traitement
+            alert(currentLang === 'fr' ? 
+                  `Merci ${data.fullName} ! Votre inscription au cours ${data.course} a été enregistrée. Vous recevrez un email de confirmation sous peu.` :
+                  currentLang === 'en' ?
+                  `Thank you ${data.fullName}! Your registration for the ${data.course} course has been recorded. You will receive a confirmation email shortly.` :
+                  `شكرًا ${data.fullName}! تم تسجيلك في دورة ${data.course}. ستتلقى بريدًا إلكترونيًا للتأكيد قريبًا.`);
+            
+            // Fermer le modal et réinitialiser le formulaire
+            registrationModal.classList.remove('active');
+            resetRegistrationForm();
+            
+            // Mettre à jour le compteur d'inscriptions
+            updateUserCount(1);
+        });
+
+        function resetRegistrationForm() {
+            registrationForm.reset();
+            goToStep(1);
+            paymentMethods.forEach(m => m.classList.remove('selected'));
+            creditCardForm.style.display = 'none';
+        }
+
+        // Animation au défilement
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'var(--shadow)';
+            }
+        });
+
+        // Système de commentaires et likes
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+        let comments = JSON.parse(localStorage.getItem('comments')) || [];
+        let totalLikes = parseInt(localStorage.getItem('totalLikes')) || 0;
+
+        // Charger les commentaires existants
+        function loadComments() {
+            commentsList.innerHTML = '';
+            comments.forEach((comment, index) => {
+                const commentElement = createCommentElement(comment, index);
+                commentsList.appendChild(commentElement);
+            });
+            updateCommentCount();
+            updateLikeCount();
+        }
+
+        // Créer un élément de commentaire
+        function createCommentElement(comment, index) {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            
+            const commentHeader = document.createElement('div');
+            commentHeader.className = 'comment-header';
+            
+            const commentAuthor = document.createElement('div');
+            commentAuthor.className = 'comment-author';
+            commentAuthor.textContent = comment.name;
+            
+            const commentDate = document.createElement('div');
+            commentDate.className = 'comment-date';
+            commentDate.textContent = new Date(comment.date).toLocaleDateString();
+            
+            const commentText = document.createElement('div');
+            commentText.className = 'comment-text';
+            commentText.textContent = comment.text;
+            
+            const commentActions = document.createElement('div');
+            commentActions.className = 'comment-actions';
+            
+            const likeBtn = document.createElement('button');
+            likeBtn.className = `like-btn ${comment.liked ? 'liked' : ''}`;
+            likeBtn.innerHTML = `<i class="fas fa-heart"></i> <span class="like-count">${comment.likes}</span>`;
+            likeBtn.addEventListener('click', () => toggleLike(index));
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-comment';
+            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteBtn.addEventListener('click', () => deleteComment(index));
+            
+            commentActions.appendChild(likeBtn);
+            commentActions.appendChild(deleteBtn);
+            
+            commentHeader.appendChild(commentAuthor);
+            commentHeader.appendChild(commentDate);
+            
+            commentDiv.appendChild(commentHeader);
+            commentDiv.appendChild(commentText);
+            commentDiv.appendChild(commentActions);
+            
+            return commentDiv;
+        }
+
+        // Ajouter un nouveau commentaire
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('commentName').value;
+            const text = document.getElementById('commentText').value;
+            
+            if (name && text) {
+                const newComment = {
+                    name,
+                    text,
+                    date: new Date().toISOString(),
+                    likes: 0,
+                    liked: false
+                };
+                
+                comments.unshift(newComment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                loadComments();
+                commentForm.reset();
+            }
+        });
+
+        // Basculer le like sur un commentaire
+        function toggleLike(index) {
+            const comment = comments[index];
+            
+            if (comment.liked) {
+                comment.likes--;
+                totalLikes--;
+            } else {
+                comment.likes++;
+                totalLikes++;
+            }
+            
+            comment.liked = !comment.liked;
+            
+            localStorage.setItem('comments', JSON.stringify(comments));
+            localStorage.setItem('totalLikes', totalLikes);
+            
+            loadComments();
+        }
+
+        // Supprimer un commentaire
+        function deleteComment(index) {
+            const comment = comments[index];
+            if (comment.liked) {
+                totalLikes -= comment.likes;
+            }
+            
+            comments.splice(index, 1);
+            localStorage.setItem('comments', JSON.stringify(comments));
+            localStorage.setItem('totalLikes', totalLikes);
+            
+            loadComments();
+        }
+
+        // Mettre à jour le compteur de commentaires
+        function updateCommentCount() {
+            document.getElementById('commentCount').textContent = comments.length;
+        }
+
+        // Mettre à jour le compteur de likes
+        function updateLikeCount() {
+            document.getElementById('likeCount').textContent = totalLikes;
+        }
+
+        // Système de compteur de visites
+        let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+
+        function updateVisitCount() {
+            visitCount++;
+            localStorage.setItem('visitCount', visitCount);
+            document.getElementById('visitCounter').textContent = visitCount;
+            document.getElementById('visitCount').textContent = visitCount;
+        }
+
+        // Mettre à jour le compteur d'utilisateurs
+        let userCount = parseInt(localStorage.getItem('userCount')) || 0;
+
+        function updateUserCount(increment = 0) {
+            if (increment > 0) {
+                userCount += increment;
+                localStorage.setItem('userCount', userCount);
+            }
+            document.getElementById('userCount').textContent = userCount;
+        }
+
+        // Panel Administrateur
+        const adminPanel = document.querySelector('.admin-panel');
+        const adminToggle = document.querySelector('.admin-toggle');
+        const resetStatsBtn = document.getElementById('resetStats');
+        const manageCommentsBtn = document.getElementById('manageComments');
+        const exportDataBtn = document.getElementById('exportData');
+        const viewUsersBtn = document.getElementById('viewUsers');
+
+        // Basculer l'affichage du panel admin
+        adminToggle.addEventListener('click', () => {
+            adminPanel.classList.toggle('hidden');
+        });
+
+        // Réinitialiser les statistiques
+        resetStatsBtn.addEventListener('click', () => {
+            if (confirm(currentLang === 'fr' ? 'Êtes-vous sûr de vouloir réinitialiser toutes les statistiques ?' :
+                         currentLang === 'en' ? 'Are you sure you want to reset all statistics?' :
+                         'هل أنت متأكد من أنك تريد إعادة تعيين جميع الإحصائيات؟')) {
+                visitCount = 0;
+                comments = [];
+                totalLikes = 0;
+                userCount = 0;
+                
+                localStorage.setItem('visitCount', visitCount);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                localStorage.setItem('totalLikes', totalLikes);
+                localStorage.setItem('userCount', userCount);
+                
+                updateVisitCount();
+                loadComments();
+                updateUserCount();
+                
+                alert(currentLang === 'fr' ? 'Statistiques réinitialisées avec succès.' :
+                      currentLang === 'en' ? 'Statistics reset successfully.' :
+                      'تم إعادة تعيين الإحصائيات بنجاح.');
+            }
+        });
+
+        // Gérer les commentaires (afficher/masquer)
+        manageCommentsBtn.addEventListener('click', () => {
+            const commentsSection = document.getElementById('commentaires');
+            if (commentsSection.style.display === 'none') {
+                commentsSection.style.display = 'block';
+                alert(currentLang === 'fr' ? 'Section commentaires affichée.' :
+                      currentLang === 'en' ? 'Comments section displayed.' :
+                      'تم عرض قسم التعليقات.');
+            } else {
+                commentsSection.style.display = 'none';
+                alert(currentLang === 'fr' ? 'Section commentaires masquée.' :
+                      currentLang === 'en' ? 'Comments section hidden.' :
+                      'تم إخفاء قسم التعليقات.');
+            }
+        });
+
+        // Exporter les données
+        exportDataBtn.addEventListener('click', () => {
+            const data = {
+                visits: visitCount,
+                comments: comments.length,
+                likes: totalLikes,
+                users: userCount,
+                commentDetails: comments
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const url = URL.createObjectURL(dataBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sofiane-academie-data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert(currentLang === 'fr' ? 'Données exportées avec succès.' :
+                  currentLang === 'en' ? 'Data exported successfully.' :
+                  'تم تصدير البيانات بنجاح.');
+        });
+
+        // Voir les utilisateurs
+        viewUsersBtn.addEventListener('click', () => {
+            alert(currentLang === 'fr' ? `Nombre total d'utilisateurs inscrits : ${userCount}` :
+                  currentLang === 'en' ? `Total registered users: ${userCount}` :
+                  `إجمالي المستخدمين المسجلين: ${userCount}`);
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            updateVisitCount();
+            loadComments();
+            updateUserCount();
+        });
+    </script>
+</body>
+</html>
